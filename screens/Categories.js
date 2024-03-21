@@ -4,23 +4,19 @@ import { ListItem} from '@rneui/themed';
 
 const Categories = ({ navigation }) => {
 
-
+const categories = ['Chemistry', 'Literature', 'Peace', 'Physics', 'Physiology or Medicine', 'Economics'];
     return (
         <ScrollView>
-               <ListItem>
+        {categories.map((category, index) => {
+        return (
+        <ListItem key={index}>            
             <ListItem.Content>
-              <ListItem.Title>Chemistry</ListItem.Title>
-              <ListItem.Title>Literature</ListItem.Title>
-              <ListItem.Title>Peace</ListItem.Title>
-              <ListItem.Title>Physics</ListItem.Title>
-              <ListItem.Title>Physiology or Medicine</ListItem.Title>
-              <ListItem.Title>Economics</ListItem.Title>
-              {/* <ListItem.Subtitle>test 1</ListItem.Subtitle> */}
+              <ListItem.Title>{category}</ListItem.Title>
             </ListItem.Content>
           </ListItem>
+        )})}
         </ScrollView>
     )
-
-}
+};
 
 export default Categories;
