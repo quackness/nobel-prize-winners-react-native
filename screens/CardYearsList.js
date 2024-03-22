@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
-import { Card, Button, Icon, Avatar, Text } from '@rneui/themed';
+import { Card, Text } from '@rneui/themed';
 
 const CardYearsList = ({ navigation }) => {
 
@@ -11,7 +11,13 @@ let loop= [];
 for (let i = currentYear; i >= startYear; i--) {
     loop.push(
         <Card key={i}>
-        <Card.Title  subtitle="Card Subtitle">{i}</Card.Title>
+        <Card.Title  subtitle="Card Subtitle"
+        onPress={()=> {
+            navigation.navigate('PrizeDetails', {
+                year: i
+              });
+        }}
+        >{i}</Card.Title>
         {i ===  new Date().getFullYear() && <Text style={styles.checkBack}>Laurates not announced yet</Text>}
         <Card.Divider />
 </Card>
@@ -32,7 +38,7 @@ for (let i = currentYear; i >= startYear; i--) {
 const styles = StyleSheet.create({
     checkBack: {
         color: 'blue',
-        textAlign: 'center'
+        textAlign: 'center',
     }
 });
 
