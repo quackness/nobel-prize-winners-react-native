@@ -2,12 +2,14 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { ListItem} from '@rneui/themed';
 import CardYearsList from './CardYearsList';
+import {useState} from'react';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // const Stack = createNativeStackNavigator();
 
 const Categories = ({ navigation }) => {
 
+ 
 const categories = ['Chemistry', 'Literature', 'Peace', 'Physics', 'Physiology or Medicine', 'Economics'];
     return (
         <ScrollView>
@@ -15,8 +17,8 @@ const categories = ['Chemistry', 'Literature', 'Peace', 'Physics', 'Physiology o
         return (
         <ListItem key={index} onPress={() => {
             navigation.navigate('CardYearsList', {
-                category: category[index]
-              },);
+                category: category
+              });
           }}>               
             <ListItem.Content>
               <ListItem.Title>{category}</ListItem.Title>

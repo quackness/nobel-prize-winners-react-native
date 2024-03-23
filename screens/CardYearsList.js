@@ -2,19 +2,25 @@ import React from 'react';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import { Card, Text } from '@rneui/themed';
 
-const CardYearsList = ({ navigation }) => {
+
+const CardYearsList = ({ navigation, route}) => {
+
 
 const currentYear = new Date().getFullYear();
 const startYear = 1901;
 const amountOfYears = currentYear - startYear;
 let loop= [];
+console.log(route.params.category);
+
+
 for (let i = currentYear; i >= startYear; i--) {
     loop.push(
         <Card key={i}>
         <Card.Title  subtitle="Card Subtitle"
         onPress={()=> {
             navigation.navigate('PrizeDetails', {
-                year: i
+                year: i,
+                category: route.params.category
               });
         }}
         >{i}</Card.Title>
@@ -23,7 +29,6 @@ for (let i = currentYear; i >= startYear; i--) {
 </Card>
 
     )
-    console.log(loop)
 }
 
     return (
