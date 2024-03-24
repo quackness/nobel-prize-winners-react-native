@@ -3,9 +3,6 @@ import { ScrollView } from 'react-native';
 import { ListItem} from '@rneui/themed';
 import CardYearsList from './CardYearsList';
 import {useState} from'react';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-// const Stack = createNativeStackNavigator();
 
 const Categories = ({ navigation }) => {
 
