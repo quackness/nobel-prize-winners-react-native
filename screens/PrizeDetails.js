@@ -40,47 +40,15 @@ const PrizeDetails = ({ navigation, route}) => {
    
     }
 
-    // const def = () => {
-    //     if (!laureates) {
-    //         <Text>{amount}</Text>
-    //     } else {
-    //         <Text>{<Text>{amount}</Text>}</Text>
-    //     }
-    // }
-
+ 
     console.log(topMotivation);
     return (
-    /*
-        // laurates.orgName ? (
-        //     <View>
-        //         {laureates.orgName.map(name => 
-        //            <Text>{name.en}</Text>)
-        //             }
-        //     </View>
-        // ) : 
-       <View>
-        <Text>{route.params.category}</Text>
-        <Text>{route.params.year}</Text>
-        <Text>{date? `Awarded on: date: ${date}` : ""}</Text>
-        <Text>{laureates & amount? `Amount: ${amount}SEK` : ""}</Text>
-        <Text>{laureates? "Laurate(s):" : "No prize was awarded."}</Text>
-        {laureates?.map((laureate, index) => (
-            <ListItem key={index}>
-                <ListItem.Content>
-                    <ListItem.Title>{laureate?.knownName ? laureate.knownName.en : laureate.orgName.en}</ListItem.Title>
-                    <ListItem.Subtitle>Motivation: {laureate.motivation.en}</ListItem.Subtitle>
-                </ListItem.Content>
-            </ListItem>
-        ))}
-    </View>
-    */
    <ScrollView>
          <View style={styles.container}>
         <Card>
           <Card.Title>{route.params.category}</Card.Title>
           <Card.Title>{route.params.year}</Card.Title>
           <Card.Divider />
-          {/* <Text>{amount? amount : "blah"}</Text> */}
           <Text>{date? `Awarded on: ${date}` : ""}</Text>
           <Text>{topMotivation? " " : `Price awarded: ${amount} SEK`}</Text>
           <Card.Title>{laureates? "Laurate(s):" : "No prize was awarded." + topMotivation.en}</Card.Title>
