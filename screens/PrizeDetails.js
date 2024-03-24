@@ -14,7 +14,7 @@ const PrizeDetails = ({ navigation, route}) => {
     const category = route.params.category
     const catCode = category.slice(0,3).toLowerCase();
 
-
+//docs https://app.swaggerhub.com/apis/NobelMedia/NobelMasterData/2.1
   
 
     const baseUrl = `https://api.nobelprize.org/2.1/nobelPrize/${catCode}/${route.params.year}`;
