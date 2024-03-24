@@ -14,8 +14,8 @@ export default function App() {
     <NavigationContainer>
            <Stack.Navigator>
         <Stack.Screen name="Nobel Prize Categories" component={Categories} />
-        <Stack.Screen name="CardYearsList" component={CardYearsList} />
-        <Stack.Screen name="PrizeDetails" component={PrizeDetails} />
+        <Stack.Screen name="Card Years List" component={CardYearsList} />
+        <Stack.Screen name="Prize Details" component={PrizeDetails} />
       </Stack.Navigator>
       </NavigationContainer>
   )

@@ -18,7 +18,7 @@ for (let i = currentYear; i >= startYear; i--) {
         <Card key={i}>
         <Card.Title  subtitle="Card Subtitle"
         onPress={()=> {
-            navigation.navigate('PrizeDetails', {
+            navigation.navigate('Prize Details', {
                 year: i,
                 category: route.params.category
               });

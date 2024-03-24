@@ -16,7 +16,7 @@ const categories = ['Chemistry', 'Literature', 'Peace', 'Physics', 'Physiology o
         {categories.map((category, index) => {
         return (
         <ListItem key={index} onPress={() => {
-            navigation.navigate('CardYearsList', {
+            navigation.navigate('Card Years List', {
                 category: category
               });
           }}>               

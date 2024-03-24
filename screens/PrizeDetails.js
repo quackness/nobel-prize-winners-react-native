@@ -1,15 +1,19 @@
 import React from'react';
-import { View} from 'react-native';
-import {  Text, ListItem } from '@rneui/themed';
+import { ScrollView, View, StyleSheet} from 'react-native';
+import {  Text, ListItem, Card } from '@rneui/themed';
 import { useEffect , useState} from 'react';
 
 const PrizeDetails = ({ navigation, route}) => {
     const [laureates, setLaurates] = useState([]);
+    const [date, setDate] = useState("");
+    const [amount, setAmount] = useState(0);
+    const [orgName, setOrgName] = useState("");
+    const [topMotivation, setTopMotivation] = useState("");
     console.log(route.params.category);
     console.log(route.params.year);
     const category = route.params.category
     const catCode = category.slice(0,3).toLowerCase();
-    console.log(catCode);
+
 
   
 
@@ -24,28 +28,103 @@ const PrizeDetails = ({ navigation, route}) => {
         try {
             const response = await fetch(baseUrl);
             const data = await response.json();
-   
+            console.log(data[0])
             setLaurates(data[0].laureates);
+            setDate(data[0].dateAwarded);
+            setAmount(data[0].prizeAmount);
+            setOrgName(data[0].orgname)
+            setTopMotivation(data[0].topMotivation)
         } catch(error) {
             console.error('Error:', error);
         }
    
     }
 
-    console.log(laureates);
+    // const def = () => {
+    //     if (!laureates) {
+    //         <Text>{amount}</Text>
+    //     } else {
+    //         <Text>{<Text>{amount}</Text>}</Text>
+    //     }
+    // }
+
+    console.log(topMotivation);
     return (
-        <View>
+    /*
+        // laurates.orgName ? (
+        //     <View>
+        //         {laureates.orgName.map(name => 
+        //            <Text>{name.en}</Text>)
+        //             }
+        //     </View>
+        // ) : 
+       <View>
         <Text>{route.params.category}</Text>
         <Text>{route.params.year}</Text>
-        <Text>Laurates</Text>
-        {laureates.map((laureate, index) => (
+        <Text>{date? `Awarded on: date: ${date}` : ""}</Text>
+        <Text>{laureates & amount? `Amount: ${amount}SEK` : ""}</Text>
+        <Text>{laureates? "Laurate(s):" : "No prize was awarded."}</Text>
+        {laureates?.map((laureate, index) => (
             <ListItem key={index}>
                 <ListItem.Content>
-                    <ListItem.Title>{laureate.knownName.en}</ListItem.Title>
+                    <ListItem.Title>{laureate?.knownName ? laureate.knownName.en : laureate.orgName.en}</ListItem.Title>
+                    <ListItem.Subtitle>Motivation: {laureate.motivation.en}</ListItem.Subtitle>
                 </ListItem.Content>
             </ListItem>
         ))}
     </View>
+    */
+   <ScrollView>
+         <View style={styles.container}>
+        <Card>
+          <Card.Title>{route.params.category}</Card.Title>
+          <Card.Title>{route.params.year}</Card.Title>
+          <Card.Divider />
+          {/* <Text>{amount? amount : "blah"}</Text> */}
+          <Text>{date? `Awarded on: ${date}` : ""}</Text>
+          <Text>{topMotivation? " " : `Price awarded: ${amount} SEK`}</Text>
+          <Card.Title>{laureates? "Laurate(s):" : "No prize was awarded." + topMotivation.en}</Card.Title>
+        {laureates?.map((laureate, index) => (
+            <ListItem key={index}>
+                <ListItem.Content>
+                    <ListItem.Title style={styles.bold}>{laureate?.knownName ? laureate.knownName.en : `Organization: ${laureate.orgName.en}`}</ListItem.Title>
+                    <ListItem.Subtitle>Motivation: {laureate.motivation.en}</ListItem.Subtitle>
+                </ListItem.Content>
+            </ListItem>
+        ))}
+        </Card>
+      </View>
+
+   </ScrollView>
     )
 };
+
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    fonts: {
+      marginBottom: 8,
+    },
+    user: {
+      flexDirection: 'row',
+      marginBottom: 6,
+    },
+    image: {
+      width: 30,
+      height: 30,
+      marginRight: 10,
+    },
+    name: {
+      fontSize: 16,
+      marginTop: 5,
+    },
+    bold: {
+        fontWeight: 'bold',
+      },
+    
+  });
+
+  
 export default PrizeDetails;
