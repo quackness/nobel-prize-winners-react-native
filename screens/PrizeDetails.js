@@ -32,7 +32,7 @@ const PrizeDetails = ({ navigation, route}) => {
             setLaurates(data[0].laureates);
             setDate(data[0].dateAwarded);
             setAmount(data[0].prizeAmount);
-            setOrgName(data[0].orgname)
+            setOrgName(data[0].orgName)
             setTopMotivation(data[0].topMotivation)
         } catch(error) {
             console.error('Error:', error);
