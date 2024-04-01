@@ -1,4 +1,4 @@
-import {Text, View, ScrollView, Card, StyleSheet} from '@rneui/themed';
+import {Text, View, ScrollView, Card, StyleSheet, ListItem} from '@rneui/themed';
 import React from 'react';
 import { useState, useEffect } from 'react';
 
@@ -7,7 +7,9 @@ const SingleLaurate = ({ navigation, route }) => {
 
     const currentUrl = `http://api.nobelprize.org/2.1/laureate/${route.params.id}`;
 
-    const [laurate, setLaurate] = useState({});
+    const [laurate, setLaurate] = useState([]);
+    const [award, setAward] = useState([]);
+
 
     useEffect(() => {
       fetchLaurate();
@@ -18,22 +20,37 @@ const SingleLaurate = ({ navigation, route }) => {
       const data = await response.json();
       console.log(data);
       setLaurate(data[0]);
+      setAward(data[0].nobelPrizes);
     }
 
     console.log(laurate);
-    console.log(typeof laurate);
+    // <ListItem.Subtitle>{crewMember.agency}</ListItem.Subtitle>
+console.log("award", award)
+function loopAwards() {
+  return award.map(item => (
+    <ListItem key={item.awardYear}>
+      <ListItem.Content>
+        <ListItem.Title>{`${item.category.en} in ${item.awardYear}`}</ListItem.Title>
+        <ListItem.Subtitle>{`Motivation: ${item.motivation.en}`}</ListItem.Subtitle>
+      </ListItem.Content>
+    </ListItem>
+  ));
+}
 
-    function test() {
+
+    function sortPersonFromOrganization() {
       if (laurate.hasOwnProperty('knownName')) {
         return (
         <>
         
         <Card.Title>{laurate.knownName.en}</Card.Title>
         <Card.Divider />
-        <Text>{laurate.birth.date}</Text>
-        <Text>{laurate.birth.place.city.en + ", " + laurate.birth.place.country.en}</Text>
+        <Text>Birth date: {laurate?.birth?.date || 'Unkown'}</Text>
+        <Text>Location: {laurate?.birth?.place?.city ? laurate?.birth?.place?.city?.en + ", " + laurate?.birth?.place?.country?.en : 'Unkown'}</Text>
         <Card.Divider />
         <Card.Title>Nobel Award(s)</Card.Title>
+        {award.length > 0 ? loopAwards() : <Text>No awards available</Text>}
+
         </>
 
         )
@@ -42,6 +59,7 @@ const SingleLaurate = ({ navigation, route }) => {
         return (
         
         <Text>Organization</Text>
+
 
         )
       }
@@ -53,7 +71,7 @@ const SingleLaurate = ({ navigation, route }) => {
     return (
     
       <Card>
-          {test()}
+          {sortPersonFromOrganization()}
       </Card>
 
     )

@@ -10,14 +10,14 @@ const Laurates = ({ navigation }) => {
     const [isLoading, setLoading] = useState(false);
     //offset in the docs has minmum 1 so hve to use it 
     const [page, setPage] = useState(1);
-    const perPage = 50;
+    const perPage = 500;
 
 
     const fetchLaurates = async () => {
         try {
             setLoading(true);
             const response = await fetch(
-                `https://api.nobelprize.org/2.1/laureates?offset=50&limit=25`
+                `https://api.nobelprize.org/2.1/laureates?offset=${page}&limit=${perPage}`
             );
             const data = await response.json();
             //alt using prev: setLaurates((prevLaurates) => [...prevLaurates, ...data.laureates]);
@@ -49,7 +49,7 @@ console.log(laurates);
                                 id: item.id})
                         }}>
                         <ListItem.Content>
-                            <ListItem.Title>{item.knownName?.en || 'Unknown'}</ListItem.Title>
+                            <ListItem.Title>{item.knownName?.en || item.orgName.en}</ListItem.Title>
                         </ListItem.Content>
                     </ListItem>
                     )
