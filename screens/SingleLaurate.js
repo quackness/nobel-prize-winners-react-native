@@ -22,9 +22,7 @@ const SingleLaurate = ({ navigation, route }) => {
       setLaurate(data[0]);
       setAward(data[0].nobelPrizes);
     }
-
     console.log(laurate);
-    // <ListItem.Subtitle>{crewMember.agency}</ListItem.Subtitle>
 console.log("award", award)
 function loopAwards() {
   return award.map(item => (
@@ -37,12 +35,10 @@ function loopAwards() {
   ));
 }
 
-
     function sortPersonFromOrganization() {
       if (laurate.hasOwnProperty('knownName')) {
         return (
         <>
-        
         <Card.Title>{laurate.knownName.en}</Card.Title>
         <Card.Divider />
         <Text>Birth date: {laurate?.birth?.date || 'Unkown'}</Text>
@@ -50,33 +46,27 @@ function loopAwards() {
         <Card.Divider />
         <Card.Title>Nobel Award(s)</Card.Title>
         {award.length > 0 ? loopAwards() : <Text>No awards available</Text>}
-
         </>
-
         )
       } else if (laurate.hasOwnProperty('orgName')) {
-        // console.log('The orgname key exists in the the object.');
+        console.log('The orgname key exists in the the object.');
         return (
-        
-        <Text>Organization</Text>
-
-
+          <>
+        <Card.Title>{laurate.orgName.en}</Card.Title>
+        <Card.Divider />
+        <Text>Funded: {laurate?.founded?.date || 'Unkown'}</Text>
+        {award.length > 0 ? loopAwards() : <Text>No awards available</Text>}
+          </>
         )
       }
-
     }
     
-    
-    
     return (
-    
       <Card>
           {sortPersonFromOrganization()}
       </Card>
-
     )
 };
-
 
 export default SingleLaurate;
 
