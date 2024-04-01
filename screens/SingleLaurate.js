@@ -1,11 +1,12 @@
-import {Text, View, ScrollView, Card, StyleSheet, ListItem} from '@rneui/themed';
+import {Text, View, ScrollView, Card, ListItem} from '@rneui/themed';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { StyleSheet} from 'react-native';
 
 const SingleLaurate = ({ navigation, route }) => {
     console.log("test", route.params.id);
 
-    const currentUrl = `http://api.nobelprize.org/2.1/laureate/${route.params.id}`;
+    const currentUrl = `https://api.nobelprize.org/2.1/laureate/${route.params.id}`;
 
     const [laurate, setLaurate] = useState([]);
     const [award, setAward] = useState([]);
@@ -28,8 +29,8 @@ function loopAwards() {
   return award.map(item => (
     <ListItem key={item.awardYear}>
       <ListItem.Content>
-        <ListItem.Title>{`${item.category.en} in ${item.awardYear}`}</ListItem.Title>
-        <ListItem.Subtitle>{`Motivation: ${item.motivation.en}`}</ListItem.Subtitle>
+        <ListItem.Title>{`Category: ${item.category.en} in ${item.awardYear}`}</ListItem.Title>
+        <ListItem.Subtitle style={styles.spacing}>{`Motivation: ${item.motivation.en}`}</ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>
   ));
@@ -39,10 +40,10 @@ function loopAwards() {
       if (laurate.hasOwnProperty('knownName')) {
         return (
         <>
-        <Card.Title>{laurate.knownName.en}</Card.Title>
+        <Card.Title style={styles.centeredText}>{laurate.knownName.en}</Card.Title>
         <Card.Divider />
-        <Text>Birth date: {laurate?.birth?.date || 'Unkown'}</Text>
-        <Text>Location: {laurate?.birth?.place?.city ? laurate?.birth?.place?.city?.en + ", " + laurate?.birth?.place?.country?.en : 'Unkown'}</Text>
+        <Text style={styles.centeredText}>Birth date: {laurate?.birth?.date || 'Unkown'}</Text>
+        <Text style={[styles.centeredText, styles.spacing]}>Location: {laurate?.birth?.place?.city ? laurate?.birth?.place?.city?.en + ", " + laurate?.birth?.place?.country?.en : 'Unkown'}</Text>
         <Card.Divider />
         <Card.Title>Nobel Award(s)</Card.Title>
         {award.length > 0 ? loopAwards() : <Text>No awards available</Text>}
@@ -52,9 +53,10 @@ function loopAwards() {
         console.log('The orgname key exists in the the object.');
         return (
           <>
-        <Card.Title>{laurate.orgName.en}</Card.Title>
+        <Card.Title style={styles.centeredText}>{laurate.orgName.en}</Card.Title>
         <Card.Divider />
-        <Text>Funded: {laurate?.founded?.date || 'Unkown'}</Text>
+        <Text style={styles.centeredText}>Funded: {laurate?.founded?.date || 'Unkown'}</Text>
+        <Text style={[styles.centeredText, styles.spacing]}>Location: {laurate?.founded?.place ? laurate?.founded?.place.city?.en + ", " + laurate?.founded?.place?.country?.en : 'Unkown'}</Text>
         {award.length > 0 ? loopAwards() : <Text>No awards available</Text>}
           </>
         )
@@ -67,6 +69,19 @@ function loopAwards() {
       </Card>
     )
 };
+
+const styles = StyleSheet.create({
+  centeredText: {
+    textAlign: 'center',
+  },
+  spacing: {
+    marginTop: 15,
+    marginBottom: 15, // Adjust the value as needed
+  },
+});
+
+
+
 
 export default SingleLaurate;
 

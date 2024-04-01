@@ -10,7 +10,7 @@ const Laurates = ({ navigation }) => {
     const [isLoading, setLoading] = useState(false);
     //offset in the docs has minmum 1 so hve to use it 
     const [page, setPage] = useState(1);
-    const perPage = 500;
+    const perPage = 25;
 
 
     const fetchLaurates = async () => {
