@@ -8,6 +8,7 @@ import Categories from './screens/Categories';
 import CardYearsList from './screens/CardYearsList';
 import PrizeDetails from './screens/PrizeDetails';
 import LauratesStack from './stacks/LauratesStack';
+import PrizeDetailsStack from './stacks/PrizeDetailsStack';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -17,7 +18,7 @@ export default function App() {
     <NavigationContainer>
           <Tab.Navigator>
           <Tab.Screen name="Laurates List" component={LauratesStack} />
-          <Tab.Screen name="Prize Details" component={PrizeDetails} />
+          <Tab.Screen name="Prize Details" component={PrizeDetailsStack} />
         </Tab.Navigator>
       </NavigationContainer>
   )
