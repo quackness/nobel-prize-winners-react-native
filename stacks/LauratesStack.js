@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
 import Laurates from '../screens/Laurates';
 import SingleLaurate from '../screens/SingleLaurate';
 

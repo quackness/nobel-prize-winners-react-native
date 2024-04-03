@@ -1,8 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { ListItem} from '@rneui/themed';
-import CardYearsList from './CardYearsList';
-import {useState} from'react';
 
 const Categories = ({ navigation }) => {
 

@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
 import PrizeDetails from '../screens/PrizeDetails';
 import Categories from '../screens/Categories';
 import CardYearsList from '../screens/CardYearsList';

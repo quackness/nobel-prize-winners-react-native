@@ -1,4 +1,4 @@
-import {Text, View, ScrollView, Card, ListItem} from '@rneui/themed';
+import {Text, Card, ListItem} from '@rneui/themed';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { StyleSheet} from 'react-native';
